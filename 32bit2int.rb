@@ -7,6 +7,7 @@ CSV.open("train50k_16bit.csv", "wb") do |csv|
 
     if i == 0
       i = 1
+      csv << row
       next
     end
 
