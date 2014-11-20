@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data= np.genfromtxt('C:\Users\Shubham\Downloads\eew.train50k.csv', delimiter=',', dtype='f8')
+data= np.genfromtxt('\train50k_16bit - copy.csv', delimiter=',', dtype='f8')
+data = data[2:]
 Y = [x[28] for x in data]
 plt.hist(Y)
 plt.title("Frequency Distribution")
