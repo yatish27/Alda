@@ -1,0 +1,2 @@
+This folder contains all the Frequency distribution graphs for the dataset. 
+Other columns have lasge distince values, so, python is not able to process that.
