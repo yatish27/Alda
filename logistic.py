@@ -31,7 +31,8 @@ X = numpy.asarray(X)
 Y = numpy.asarray(Y)
 
 #Random Forest
-rf = RandomForestClassifier(n_estimators=10)
+#rf = RandomForestClassifier(n_estimators=10)
+lr = linear_model.SGDClassifier(loss='log', class_weight=None)
 #rf.fit(X, Y)
 
 
@@ -53,10 +54,10 @@ c = []
 d = []
 
 for train_index, test_index in cv:
-    rf.fit(X[train_index], Y[train_index])
+    lr.fit(X[train_index], Y[train_index])
 
-    probas      = rf.predict_proba(X[test_index])
-    probas_ceil = rf.predict(X[test_index])
+    probas      = lr.predict_proba(X[test_index])
+    probas_ceil = lr.predict(X[test_index])
 
     print("Correctly Classified Instances: %d" %accuracy_score(Y[test_index], probas_ceil, normalize=False))
     correct_classified.append(accuracy_score(Y[test_index], probas_ceil, normalize=False))
@@ -82,7 +83,7 @@ for train_index, test_index in cv:
     print(classification_report(Y[test_index], probas_ceil))
 
     cm = confusion_matrix(Y[test_index], probas_ceil)
- 
+
     a.append(cm[0][0])
     b.append(cm[0][1])
     c.append(cm[1][0])
