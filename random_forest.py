@@ -47,6 +47,10 @@ ps = []
 recall = []
 roc_auc = []
 f1 = []
+a = []
+b = []
+c = []
+d = []
 
 for train_index, test_index in cv:
     rf.fit(X[train_index], Y[train_index])
@@ -79,6 +83,7 @@ for train_index, test_index in cv:
 
     cm = confusion_matrix(Y[test_index], probas_ceil)
     print(cm)
+    a.append(cm[0][0])
     #results.append( llfun(Y[test_index], [x[1] for x in probas]) )
 
 print "Result(Correct_classified): " + str( numpy.array(correct_classified).sum() )
@@ -88,4 +93,3 @@ print "Results:ps " + str( numpy.array(ps).mean() )
 print "Results:recall " + str( numpy.array(recall).mean() )
 print "Results:roc_auc " + str( numpy.array(roc_auc).mean() )
 print "Results:f1 " + str( numpy.array(f1).mean() )
-
