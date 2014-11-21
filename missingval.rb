@@ -40,8 +40,15 @@ missing_values = %W|1
 3904386055
 1238795398|
 
+j = 0
 CSV.open("train50k_16bit_missing_vals.csv", "wb") do |csv|
   CSV.foreach("train50k_16bit.csv") do |row|
+
+    if j == 0
+      j = 1
+      next
+    end
+
     (2..40).each do |i|
       if !row[i]
         row[i] = missing_values[i-2]
