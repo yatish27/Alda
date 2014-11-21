@@ -81,4 +81,11 @@ for train_index, test_index in cv:
     print(cm)
     #results.append( llfun(Y[test_index], [x[1] for x in probas]) )
 
-#print "Results: " + str( numpy.array(results).mean() )
+print "Result(Correct_classified): " + str( numpy.array(correct_classified).sum() )
+print "Results:mae " + str( numpy.array(mae).mean() )
+print "Results:mse " + str( numpy.array(mse).mean() )
+print "Results:ps " + str( numpy.array(ps).mean() )
+print "Results:recall " + str( numpy.array(recall).mean() )
+print "Results:roc_auc " + str( numpy.array(roc_auc).mean() )
+print "Results:f1 " + str( numpy.array(f1).mean() )
+
