@@ -82,10 +82,17 @@ for train_index, test_index in cv:
     print(classification_report(Y[test_index], probas_ceil))
 
     cm = confusion_matrix(Y[test_index], probas_ceil)
-    print(cm)
+ 
     a.append(cm[0][0])
+    b.append(cm[0][1])
+    c.append(cm[1][0])
+    d.append(cm[1][1])
     #results.append( llfun(Y[test_index], [x[1] for x in probas]) )
-
+cm[0][0] = str( numpy.array(a).sum() )
+cm[0][1] = str( numpy.array(b).sum() )
+cm[1][0] = str( numpy.array(c).sum() )
+cm[1][1] = str( numpy.array(d).sum() )
+print(cm)
 print "Result(Correct_classified): " + str( numpy.array(correct_classified).sum() )
 print "Results:mae " + str( numpy.array(mae).mean() )
 print "Results:mse " + str( numpy.array(mse).mean() )
@@ -93,3 +100,4 @@ print "Results:ps " + str( numpy.array(ps).mean() )
 print "Results:recall " + str( numpy.array(recall).mean() )
 print "Results:roc_auc " + str( numpy.array(roc_auc).mean() )
 print "Results:f1 " + str( numpy.array(f1).mean() )
+
