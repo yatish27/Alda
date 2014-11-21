@@ -62,7 +62,7 @@ for train_index, test_index in cv:
     correct_classified.append(accuracy_score(Y[test_index], probas_ceil, normalize=False))
 
     print("Mean AE: %f" %mean_absolute_error(Y[test_index], probas_ceil))
-    mae.append(accuracy_score(Y[test_index], probas_ceil))
+    mae.append(mean_absolute_error(Y[test_index], probas_ceil))
 
     print("Mean SE: %f" %mean_squared_error(Y[test_index], probas_ceil))
     mse.append(mean_squared_error(Y[test_index], probas_ceil))
