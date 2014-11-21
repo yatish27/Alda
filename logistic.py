@@ -31,8 +31,7 @@ X = numpy.asarray(X)
 Y = numpy.asarray(Y)
 
 #Random Forest
-#rf = RandomForestClassifier(n_estimators=10)
-lr = linear_model.SGDClassifier(loss='log', class_weight=None)
+rf = RandomForestClassifier(n_estimators=10)
 #rf.fit(X, Y)
 
 
@@ -54,16 +53,16 @@ c = []
 d = []
 
 for train_index, test_index in cv:
-    lr.fit(X[train_index], Y[train_index])
+    rf.fit(X[train_index], Y[train_index])
 
-    probas      = lr.predict_proba(X[test_index])
-    probas_ceil = lr.predict(X[test_index])
+    probas      = rf.predict_proba(X[test_index])
+    probas_ceil = rf.predict(X[test_index])
 
     print("Correctly Classified Instances: %d" %accuracy_score(Y[test_index], probas_ceil, normalize=False))
     correct_classified.append(accuracy_score(Y[test_index], probas_ceil, normalize=False))
 
     print("Mean AE: %f" %mean_absolute_error(Y[test_index], probas_ceil))
-    mae.append(accuracy_score(Y[test_index], probas_ceil))
+    mae.append(mean_absolute_error(Y[test_index], probas_ceil))
 
     print("Mean SE: %f" %mean_squared_error(Y[test_index], probas_ceil))
     mse.append(mean_squared_error(Y[test_index], probas_ceil))
