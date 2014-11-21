@@ -45,7 +45,7 @@ mae = []
 mse = []
 ps = []
 recall = []
-roc_aoc = []
+roc_auc = []
 f1 = []
 
 for train_index, test_index in cv:
@@ -69,8 +69,8 @@ for train_index, test_index in cv:
     print("Recall Score: %f" %recall_score(Y[test_index], probas_ceil))
     recall.append(recall_score(Y[test_index], probas_ceil, average='weighted'))
 
-    print("Area ROC: %f" %roc_aoc(Y[test_index], probas_ceil))
-    roc_aoc.append(roc_aoc(Y[test_index], probas_ceil))
+    print("Area ROC: %f" %roc_auc_score(Y[test_index], probas_ceil))
+    roc_auc.append(roc_auc_score(Y[test_index], probas_ceil))
 
     print("F1 Score: %f" %f1_score(Y[test_index], probas_ceil, average='weighted'))
     f1.append(f1_score(Y[test_index], probas_ceil))
