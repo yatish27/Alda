@@ -8,7 +8,7 @@ import scipy as sp
 #Evaluation
 from sklearn.cross_validation import cross_val_score
 from sklearn import cross_validation
-from sklearn.metrics import accuracy_score, confusion_matrix, mean_absolute_error, mean_squared_error, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, mean_absolute_error, mean_squared_error, classification_report, f1_score, precision_score, recall_score, roc_auc_score
 
 import sklearn.metrics
 
@@ -46,7 +46,7 @@ mse = []
 ps = []
 recall = []
 roc_aoc = []
-
+f1 = []
 
 for train_index, test_index in cv:
     rf.fit(X[train_index], Y[train_index])
@@ -66,7 +66,14 @@ for train_index, test_index in cv:
     print("Precision Score: %f" %precision_score(Y[test_index], probas_ceil))
     ps.append(precision_score(Y[test_index], probas_ceil))
 
+    print("Recall Score: %f" %recall_score(Y[test_index], probas_ceil))
+    recall.append(recall_score(Y[test_index], probas_ceil, average='weighted'))
 
+    print("Area ROC: %f" %roc_aoc(Y[test_index], probas_ceil))
+    roc_aoc.append(roc_aoc(Y[test_index], probas_ceil))
+
+    print("F1 Score: %f" %f1_score(Y[test_index], probas_ceil, average='weighted'))
+    f1.append(f1_score(Y[test_index], probas_ceil))
 
     print(classification_report(Y[test_index], probas_ceil))
 
